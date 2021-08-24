@@ -13,18 +13,25 @@ export const SCREEN = {
   height: Dimensions.get('screen').height,
 };
 export const FONT = {
-  
-  OpenSans: {
-    regular: 'OpenSans-Regular',
-    bold: 'OpenSans-Bold',
-    Extrabold_italic: 'OpenSans-ExtraBoldItalic',
-    semiBold: 'OpenSans-SemiBold',
-    Extra_bold: 'OpenSans-ExtraBold',
-    italic: 'OpenSans-Italic',
-    bold_italic: 'OpenSans-BoldItalic',
-    light: 'OpenSans-Light',
-    lightItalic: 'OpenSans-LightItalic',
-    SemiBold_italic: 'OpenSans-SemiBoldItalic',
+  Popins: {
+    black: 'Poppins-Black',
+    black_italic: 'Poppins-BlackItalic',
+    bold: 'Poppins-Bold',
+    bold_italic: 'Poppins-BoldItalic',
+    extra_bold: 'Poppins-ExtraBold',
+    extrabold_italic: 'Poppins-ExtraBoldItalic',
+    extra_light: 'Poppins-ExtraLight',
+    extra_light_italic: 'Poppins-ExtraLightItalic',
+    italic: 'Poppins-Italic',
+    light: 'Poppins-Light',
+    light_italic: 'Poppins-LightItalic',
+    medium: 'Poppins-Medium',
+    medium_italic: 'Poppins-MediumItalic',
+    regular: 'Poppins-Regular',
+    semi_bold: 'Poppins-SemiBold',
+    semi_bold_italic: 'Poppins-SemiBoldItalic',
+    thin: 'Poppins-Thin',
+    thin_italic: 'Poppins-ThinItalic',
   },
 };
 
