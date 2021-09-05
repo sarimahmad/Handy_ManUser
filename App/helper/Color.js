@@ -18,9 +18,9 @@ export const Silver = {
   extraLight: 'rgba(249, 250, 251, 1)',
 };
 export const ORANGE = {
-  dark: 'rgba(238, 131, 53, 1)',
+  dark: 'rgba(235, 137, 36, 1)',
   light: 'rgba(239, 133, 52, 1)',
-  extraLight: 'rgba(248, 232, 220, 1)',
+  extraLight: 'rgba(253, 243, 233, 1)',
   DrawerUpperColor: 'rgba(241, 147, 44, 1)',
   DrawerDownColor: 'rgba(243, 180, 98, 1)',
   extralight2: 'rgba(255, 197, 155, 1)',
