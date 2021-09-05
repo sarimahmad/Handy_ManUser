@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   View,
@@ -15,7 +16,7 @@ import {APP, BLACK, WHITE} from '../../helper/Color';
 import {FONT, SCREEN} from '../../helper/Constant';
 import * as userActions from '../../redux/actions/user';
 
-class Login extends Component {
+class Verify extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +31,7 @@ class Login extends Component {
       <View style={styles.wrapperView}>
         <Header
           backColor={APP.light}
-          headerText={'Login'}
+          headerText={'Verification'}
           headerTextColor={WHITE.btntxtColor}
           leftIcon={require('../../assets/back_white.png')}
           leftPress={() => this.props.navigation.pop()}
@@ -40,31 +41,28 @@ class Login extends Component {
             style={styles.logo}
             source={require('../../assets/logo.png')}
           />
-          <Text style={styles.popin21Bold}>Welcome Back</Text>
+          <Text style={styles.popin21Bold}>OTP Numberz</Text>
           <View style={styles.textInputWrapper}>
-            <Text style={styles.title}>Enter your mobile number</Text>
-            <TextInput
-              style={styles.phoneNumberInput}
-              placeholder={'+923124808897'}
-              value={this.state.phone}
-              onChangeText={phone => this.setState({phone})}
-            />
+            <TextInput style={[styles.textInputInner]} />
+            <TextInput style={[styles.textInputInner, {marginLeft: 20}]} />
+            <TextInput style={[styles.textInputInner, {marginLeft: 20}]} />
+            <TextInput style={[styles.textInputInner, {marginLeft: 20}]} />
           </View>
           <TouchableOpacity
             style={styles.agrementWrapper}
             activeOpacity={0.8}
             onPress={() => this.setState({agree: !this.state.agree})}>
-            <View
-              style={
-                this.state.agree ? styles.selectedView : styles.unSelectedView
-              }
-            />
-            <Text style={styles.popin10Regular}>
-              I have read and I agree to the handyman agreement
-            </Text>
+            <Text style={styles.popin12Regular}>Resend the OTP code again</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.signInBtn} activeOpacity={0.8}>
-            <Text style={styles.popin14SemiBold}>Sign In</Text>
+          <Text style={styles.popin12RegularBlack}>
+            We have sent you an OTP on your mobile number, please enter to
+            verify
+          </Text>
+          <TouchableOpacity
+            style={styles.signInBtn}
+            activeOpacity={0.8}
+            onPress={() => this.props.navigation.navigate('HomeTabs')}>
+            <Text style={styles.popin14SemiBold}>Verify</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </View>
@@ -103,43 +101,26 @@ const styles = StyleSheet.create({
     color: BLACK.dark,
     alignSelf: 'center',
   },
-  title: {
-    fontSize: 14,
-    fontFamily: FONT.Popins.medium,
-    color: BLACK.dark,
-    marginLeft: 20,
-  },
-  phoneNumberInput: {
-    height: 40,
-    width: SCREEN.width - 80,
-    alignSelf: 'center',
-    marginTop: 15,
-  },
   agrementWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    width: SCREEN.width - 80,
-    marginTop: 32,
+    marginTop: 10,
   },
-  selectedView: {
-    height: 14,
-    width: 14,
-    borderRadius: 7,
-    backgroundColor: APP.light,
-  },
-  unSelectedView: {
-    height: 14,
-    width: 14,
-    borderRadius: 7,
-    borderWidth: 1,
-    borderColor: APP.light,
-  },
-  popin10Regular: {
-    fontSize: 10,
+  popin12Regular: {
+    fontSize: 12,
     fontFamily: FONT.Popins.regular,
     color: APP.light,
     marginLeft: 8,
+  },
+  popin12RegularBlack: {
+    fontSize: 12,
+    fontFamily: FONT.Popins.regular,
+    color: BLACK.dark,
+    width: SCREEN.width - 134,
+    alignSelf: 'center',
+    marginTop: 25,
+    textAlign: 'center',
   },
   signInBtn: {
     height: 42,
@@ -157,11 +138,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   textInputWrapper: {
-    height: 91,
+    height: 74,
     width: SCREEN.width - 48,
     borderRadius: 7,
-    marginTop: 70,
+    marginTop: 35,
     alignSelf: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
     backgroundColor: WHITE.btntxtColor,
     shadowColor: '#000',
     shadowOffset: {
@@ -172,6 +156,12 @@ const styles = StyleSheet.create({
     shadowRadius: 1.0,
     elevation: 1,
   },
+  textInputInner: {
+    height: 25,
+    width: 30,
+    borderBottomColor: 'grey',
+    borderBottomWidth: 0.5,
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Verify);

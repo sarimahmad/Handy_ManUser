@@ -15,7 +15,7 @@ import {APP, BLACK, WHITE} from '../../helper/Color';
 import {FONT, SCREEN} from '../../helper/Constant';
 import * as userActions from '../../redux/actions/user';
 
-class Login extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -174,4 +174,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

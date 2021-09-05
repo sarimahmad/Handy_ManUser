@@ -9,20 +9,32 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {connect} from 'react-redux';
+import ImagePicker from 'react-native-image-crop-picker';
+
 import Header from '../../Components/Header';
 
 import {APP, BLACK, WHITE} from '../../helper/Color';
 import {FONT, SCREEN} from '../../helper/Constant';
 import * as userActions from '../../redux/actions/user';
 
-class Login extends Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       phone: '',
       loading: false,
       agree: false,
+      imageUri: '',
     };
+  }
+  openPicker() {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      this.setState({imageUri: image.path});
+    });
   }
 
   render() {
@@ -30,41 +42,64 @@ class Login extends Component {
       <View style={styles.wrapperView}>
         <Header
           backColor={APP.light}
-          headerText={'Login'}
+          headerText={'Registration'}
           headerTextColor={WHITE.btntxtColor}
-          leftIcon={require('../../assets/back_white.png')}
-          leftPress={() => this.props.navigation.pop()}
         />
         <SafeAreaView style={styles.wrapperView}>
           <Image
             style={styles.logo}
             source={require('../../assets/logo.png')}
           />
-          <Text style={styles.popin21Bold}>Welcome Back</Text>
+          <Text style={styles.popin21Bold}>Sign Up Account</Text>
+          <TouchableOpacity
+            style={styles.imagePicker}
+            onPress={() => this.openPicker()}>
+            <Image
+              style={styles.ImagePickerInnerImg}
+              source={
+                this.state.imageUri !== ''
+                  ? {uri: this.state.imageUri}
+                  : require('../../assets/logo.png')
+              }
+            />
+            {this.state.imageUri === '' && (
+              <Image
+                style={styles.addBtn}
+                source={require('../../assets/add_btn.png')}
+              />
+            )}
+          </TouchableOpacity>
           <View style={styles.textInputWrapper}>
-            <Text style={styles.title}>Enter your mobile number</Text>
+            <Text style={styles.title}>Name</Text>
             <TextInput
               style={styles.phoneNumberInput}
-              placeholder={'+923124808897'}
-              value={this.state.phone}
-              onChangeText={phone => this.setState({phone})}
+              placeholder={'Awais Ah'}
+              value={this.state.name}
+              onChangeText={name => this.setState({name})}
+            />
+          </View>
+          <View style={styles.textInputWrapper}>
+            <Text style={[styles.title]}>Email Address</Text>
+            <TextInput
+              style={styles.phoneNumberInput}
+              placeholder={'ash@gmail.com'}
+              value={this.state.email}
+              onChangeText={email => this.setState({email})}
             />
           </View>
           <TouchableOpacity
+            style={styles.signInBtn}
+            activeOpacity={0.8}
+            onPress={() => this.props.navigation.navigate('Verify')}>
+            <Text style={styles.popin14SemiBold}>Register</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={styles.agrementWrapper}
             activeOpacity={0.8}
-            onPress={() => this.setState({agree: !this.state.agree})}>
-            <View
-              style={
-                this.state.agree ? styles.selectedView : styles.unSelectedView
-              }
-            />
-            <Text style={styles.popin10Regular}>
-              I have read and I agree to the handyman agreement
+            onPress={() => this.props.navigation.navigate('Login')}>
+            <Text style={styles.popin12Regular}>
+              You already have an account?
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.signInBtn} activeOpacity={0.8}>
-            <Text style={styles.popin14SemiBold}>Sign In</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </View>
@@ -119,8 +154,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    width: SCREEN.width - 80,
-    marginTop: 32,
+    marginTop: 35,
   },
   selectedView: {
     height: 14,
@@ -135,8 +169,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: APP.light,
   },
-  popin10Regular: {
-    fontSize: 10,
+  popin12Regular: {
+    fontSize: 12,
     fontFamily: FONT.Popins.regular,
     color: APP.light,
     marginLeft: 8,
@@ -147,7 +181,7 @@ const styles = StyleSheet.create({
     backgroundColor: APP.light,
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: 83,
+    marginTop: 53,
     borderRadius: 10,
   },
   popin14SemiBold: {
@@ -156,11 +190,33 @@ const styles = StyleSheet.create({
     color: WHITE.btntxtColor,
     alignSelf: 'center',
   },
+  imagePicker: {
+    height: 110,
+    width: 110,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginTop: 35,
+  },
+  ImagePickerInnerImg: {
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    resizeMode: 'stretch',
+    position: 'absolute',
+  },
+  addBtn: {
+    height: 30,
+    width: 30,
+    position: 'absolute',
+    right: 10,
+    bottom: 0,
+    resizeMode: 'stretch',
+  },
   textInputWrapper: {
     height: 91,
     width: SCREEN.width - 48,
     borderRadius: 7,
-    marginTop: 70,
+    marginTop: 35,
     alignSelf: 'center',
     backgroundColor: WHITE.btntxtColor,
     shadowColor: '#000',
@@ -174,4 +230,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
