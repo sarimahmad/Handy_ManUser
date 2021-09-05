@@ -109,7 +109,7 @@ class IntroScreen extends Component {
           />
           <Text
             style={styles.skipRightText}
-            onPress={() => this.props.navigation.navigate('Login')}>
+            onPress={() => this.props.navigation.navigate('SignUp')}>
             SKIP
           </Text>
         </View>

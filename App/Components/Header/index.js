@@ -20,7 +20,7 @@ function Header({ leftPress, leftIcon, headerTextColor, backColor, headerText}) 
         borderBottomRightRadius: 15,
       }}>
         {leftPress && <TouchableOpacity style={{position: 'absolute', left: 16,justifyContent: 'center'}} onPress={leftPress}>
-          <Image source={leftIcon} style={{height: 12.24, width: 7.18, resizeMode: 'contain'}} />
+          <Image source={leftIcon} style={{height: 12.24, width: 7.18, resizeMode: 'contain', bottom: 30}} />
           </TouchableOpacity>}
           {headerText && <Text style={{fontFamily: FONT.Popins.bold, fontSize: 21, color: headerTextColor}}>{headerText}</Text>}
     </View>
